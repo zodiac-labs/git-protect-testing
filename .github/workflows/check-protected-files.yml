@@ -6,7 +6,7 @@ on:
   push:
 
 jobs:
-  check:
+  check-for-changes-to-protected-files:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,4 +19,4 @@ jobs:
         python-version: '3.x'
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py $GITHUB_BASE_REF $GITHUB_HEAD_REF
+      run: python git-protect-testing/.github/scripts/git_protect.py $GITHUB_BASE_REF $GITHUB_HEAD_REF
