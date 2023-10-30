@@ -17,15 +17,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    
-    - name: Print the current working directory
-      run: pwd
-
-    - name: Print the SHA of the current changes
-      run: echo $(git rev-parse $GITHUB_BASE_REF)
-
-    - name: Print the head ref
-      run: echo $(git rev-parse HEAD)
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py $(git rev-parse $GITHUB_BASE_REF) $(git rev-parse HEAD)
+      run: python .github/scripts/git_protect.py $(git rev-parse $GITHUB_BASE_REF) $(git rev-parse $GITHUB_HEAD_REF)
