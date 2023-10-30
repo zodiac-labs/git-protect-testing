@@ -21,5 +21,11 @@ jobs:
     - name: Print the current working directory
       run: pwd
 
+    - name: Print the current working directory
+      run: echo $GITHUB_BASE_REF
+
+    - name: Print the current working directory
+      run: echo $GITHUB_HEAD_REF
+
     - name: Check for file changes using Python
       run: python .github/scripts/git_protect.py $GITHUB_BASE_REF $GITHUB_HEAD_REF
