@@ -28,4 +28,4 @@ jobs:
       run: echo $(git rev-parse HEAD)
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py $GITHUB_SHA $(git rev-parse HEAD)
+      run: python .github/scripts/git_protect.py $(git rev-parse $GITHUB_REF_NAME) $(git rev-parse HEAD)
