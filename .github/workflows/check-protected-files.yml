@@ -21,10 +21,10 @@ jobs:
     - name: Print the current working directory
       run: pwd
 
-    - name: Print the current working directory
+    - name: Print the SHA of the current changes
       run: echo $GITHUB_SHA
 
-    - name: Print the current working directory
+    - name: Print the head ref
       run: echo $GITHUB_HEAD_REF
 
     - name: Check for file changes using Python
