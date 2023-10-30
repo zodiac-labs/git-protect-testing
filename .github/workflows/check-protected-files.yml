@@ -22,10 +22,10 @@ jobs:
       run: pwd
 
     - name: Print the SHA of the current changes
-      run: echo $GITHUB_SHA
+      run: echo $(git rev-parse $GITHUB_BASE_REF)
 
     - name: Print the head ref
       run: echo $(git rev-parse HEAD)
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py $(git rev-parse $GITHUB_REF_NAME) $(git rev-parse HEAD)
+      run: python .github/scripts/git_protect.py $(git rev-parse $GITHUB_BASE_REF) $(git rev-parse HEAD)
