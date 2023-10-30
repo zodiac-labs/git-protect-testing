@@ -21,8 +21,11 @@ jobs:
       with:
         python-version: '3.x'
     
-    - name: Print the current working directory
-      run: pwd
+    - name: Print the SHA of the head ref
+      run: echo $(git rev-parse $GITHUB_HEAD_REF)
+
+    - name: Print the SHA of the base ref
+      run: echo $(git rev-parse $GITHUB_BASE_REF)
 
     - name: Check for file changes using Python
       run: python .github/scripts/git_protect.py ${{ github.event.before }} ${{ github.sha }}
