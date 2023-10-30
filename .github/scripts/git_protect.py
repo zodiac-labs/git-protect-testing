@@ -22,10 +22,10 @@ def gitignore_to_regex(pattern) -> str:
 
 def get_protected_files(file_name: str) -> list[str]:
     # Check to see if the .gitprotect file exists
-    config_path = Path(file_name)
-    if not config_path.exists():
-        log.error(f"ERROR: Could not find .gitprotect at {config_path.absolute()}")
-        exit(1)
+    # config_path = Path(file_name)
+    # if not config_path.exists():
+    #     log.error(f"ERROR: Could not find .gitprotect at {config_path.absolute()}")
+    #     exit(1)
 
     # Open the file and read in file paths
     with open(file_name, "r") as file:
