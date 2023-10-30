@@ -25,7 +25,7 @@ jobs:
       run: echo $GITHUB_SHA
 
     - name: Print the head ref
-      run: echo $GITHUB_HEAD_REF
+      run: echo $GITHUB_BASE_REF
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py $GITHUB_SHA $GITHUB_HEAD_REF
+      run: python .github/scripts/git_protect.py $GITHUB_SHA $GITHUB_BASE_REF
