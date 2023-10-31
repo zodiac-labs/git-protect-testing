@@ -4,12 +4,11 @@ on:
   workflow_dispatch:
   pull_request:
 
-
+permissions: write-all
 
 jobs:
   check-if-protected-files-are-modified:
-    permissions:
-      pull-requests: write
+    
     runs-on: ubuntu-latest
 
     steps:
