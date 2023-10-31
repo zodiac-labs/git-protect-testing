@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
 
-permissions:
-  pull-requests: write
+
 
 jobs:
   check-if-protected-files-are-modified:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +30,6 @@ jobs:
         if: ${{ failure() }}
         uses: actions/github-script@v6 
         with:
-          github-token: ${{ secrets.GIT_PROTECT_ACCESS_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
