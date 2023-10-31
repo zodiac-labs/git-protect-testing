@@ -27,9 +27,7 @@ jobs:
 
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
-        uses: actions/github-script@v6
-        env:
-          GITHUB_TOKEN: 
+        uses: actions/github-script@v6 
         with:
           github-token: ${{ secrets.GIT_PROTECT_ACCESS_TOKEN }}
           script: |
