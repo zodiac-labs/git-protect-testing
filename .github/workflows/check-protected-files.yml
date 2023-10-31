@@ -3,11 +3,10 @@ name: Check For Protected File Changes
 on:
   pull_request_target:
 
-permissions: write-all
-
 jobs:
   check-if-protected-files-are-modified:
-    
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
