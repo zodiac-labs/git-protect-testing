@@ -5,8 +5,7 @@ on:
 
 jobs:
   check-if-protected-files-are-modified:
-    permissions:
-      pull-requests: write
+    permissions: write-all
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +33,7 @@ jobs:
         if: ${{ failure() }}
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: output.txt
+            filePath: output.txt
 
         
 
