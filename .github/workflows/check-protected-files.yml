@@ -1,8 +1,7 @@
 name: Check For Protected File Changes
 
 on:
-  workflow_dispatch:
-  pull_request:
+  pull_request_target:
 
 permissions: write-all
 
@@ -23,17 +22,13 @@ jobs:
           python-version: '3.x'
       
       - name: Check for file changes using git-protect
-        run: python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
+        run: python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > output.txt
 
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
-        uses: actions/github-script@v6 
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Protected files were modified. Check the Github Actions logs for more information.'
-            })
+            file_path: output.txt
+
+        
 
