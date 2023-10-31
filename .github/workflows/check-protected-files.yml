@@ -1,7 +1,7 @@
 name: Check For Protected File Changes
 
 on:
-  pull_request:
+  pull_request_target:
 
 jobs:
   check-if-protected-files-are-modified:
