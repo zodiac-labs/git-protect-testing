@@ -37,4 +37,3 @@ jobs:
               body: 'Protected files were modified. Check the Github Actions logs for more information.'
             })
 
-        run: echo hello
