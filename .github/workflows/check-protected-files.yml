@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  check:
+  check-if-protected-files-are-modified:
     runs-on: ubuntu-latest
 
     steps:
