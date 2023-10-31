@@ -27,4 +27,4 @@ jobs:
       run: echo $(git rev-parse $GITHUB_BASE_REF)
 
     - name: Check for file changes using Python
-      run: python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.base.sha }}
+      run: python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
