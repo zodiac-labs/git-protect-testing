@@ -30,8 +30,9 @@ jobs:
             exit 1
           fi
       - name: Debug log output
+        if: ${{ failure() }}
         run: cat output.txt
-        
+
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
         uses: actions/github-script@v6
