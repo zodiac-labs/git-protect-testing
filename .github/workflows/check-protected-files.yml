@@ -29,7 +29,9 @@ jobs:
           if [ $? -ne 0 ]; then
             exit 1
           fi
-          cat output.txt
+      - name: Debug log output
+        run: cat output.txt
+        
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
         uses: actions/github-script@v6
