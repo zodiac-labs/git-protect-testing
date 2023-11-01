@@ -32,9 +32,18 @@ jobs:
           cat output.txt
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
-        uses: thollander/actions-comment-pull-request@v2
+        uses: actions/github-script@v6
         with:
-            filePath: output.txt
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Protected files were modified. Check the Github Actions logs for more information.'
+            })
+        # uses: thollander/actions-comment-pull-request@v2
+        # with:
+        #     filePath: output.txt
 
         
 
