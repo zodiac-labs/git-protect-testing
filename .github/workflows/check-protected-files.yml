@@ -35,12 +35,22 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Protected files were modified. Check the Github Actions logs for more information.'
-            })
+            const fs = require('fs');
+
+            fs.readFile('output.txt', 'utf8', (err, data) => {
+                if (err) {
+                    console.error('Error reading the file:', err);
+                    return;
+                }
+                github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: data
+              })
+            });
+          
+            
         # uses: thollander/actions-comment-pull-request@v2
         # with:
         #     filePath: output.txt
