@@ -93,7 +93,7 @@ if __name__ == "__main__":
     parser.add_argument("head_ref", help="The git SHA for the incoming commit")
     parser.add_argument(
         "--comment-only",
-        action="store_false",
+        action="store_true",
         help="Sets git-protect to not exit with an error code",
     )
 
