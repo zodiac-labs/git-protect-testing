@@ -22,10 +22,10 @@ jobs:
 
       - name: Check for file changes using git-protect
         run: |
-          python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} 2> output.txt
+          python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} --comment-only &> output.txt
 
       - name: Post a comment back to the PR if protected files have changed
-        if: ${{ failure() }}
+        if: ${{ always() }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -43,11 +43,6 @@ jobs:
                 body: data
               })
             });
-          
-            
-        # uses: thollander/actions-comment-pull-request@v2
-        # with:
-        #     filePath: output.txt
 
         
 

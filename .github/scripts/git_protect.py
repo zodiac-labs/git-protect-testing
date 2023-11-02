@@ -68,6 +68,8 @@ def check_changes_against_protect_list(
         else:
             exit_code = 1
         exit(exit_code)
+    else:
+        log.debug("No changes to protected files were detected.")
 
 
 def main(args):
