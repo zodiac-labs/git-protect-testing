@@ -74,7 +74,6 @@ def main(args):
     changed_files = get_changed_files(
         args.base_ref,
         args.head_ref,
-        args.comment_only
     )
     protected_files = get_protected_files(".gitprotect")
     check_changes_against_protect_list(
