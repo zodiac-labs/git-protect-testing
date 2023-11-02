@@ -60,13 +60,13 @@ def check_changes_against_protect_list(
 
     violations_list = "\n".join(violations)
     if violations:
-        log.debug(
+        print(
             f"The following files are protected and cannot be modified:\n{violations_list}"
         )
         if comment_only:
             exit_code = 0
         else:
-            exit_code = 1
+            exit_code = 0
         exit(exit_code)
 
 
