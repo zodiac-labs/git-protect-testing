@@ -23,9 +23,6 @@ jobs:
       - name: Check for file changes using git-protect
         run: |
           python .github/scripts/git_protect.py ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} --comment-only 2> output.txt
-          if [ $? -ne 0 ]; then
-            exit 1
-          fi
 
       - name: Post a comment back to the PR if protected files have changed
         if: ${{ failure() }}
