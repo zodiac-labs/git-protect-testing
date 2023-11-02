@@ -48,7 +48,7 @@ def get_changed_files(base_ref: str, head_ref: str) -> list[str]:
 
 
 def check_changes_against_protect_list(
-    changed_files: list[str], protected_files: list[str]
+    changed_files: list[str], protected_files: list[str], comment_only: bool
 ):
     violations = set()
 
@@ -60,20 +60,31 @@ def check_changes_against_protect_list(
 
     violations_list = "\n".join(violations)
     if violations:
-        log.error(f"ERROR: The following files cannot be modified:\n{violations_list}")
-        exit(1)
+        log.error(
+            f"The following files are protected and cannot be modified:\n{violations_list}"
+        )
+        if comment_only:
+            exit_code = 0
+        else:
+            exit_code = 1
+        exit(exit_code)
 
 
 def main(args):
-    changed_files = get_changed_files(args.base_ref, args.head_ref)
+    changed_files = get_changed_files(
+        args.base_ref,
+        args.head_ref,
+        args.comment_only
+    )
     protected_files = get_protected_files(".gitprotect")
     check_changes_against_protect_list(
-        protected_files=protected_files, changed_files=changed_files
+        protected_files=protected_files,
+        changed_files=changed_files,
+        comment_only=args.comment_only
     )
 
 
 if __name__ == "__main__":
-    # base_ref head_ref
     parser = argparse.ArgumentParser(
         description="A utility function to check if protected files have been modified."
     )
@@ -81,6 +92,12 @@ if __name__ == "__main__":
         "base_ref", help="The git SHA for the most recent merged commit."
     )
     parser.add_argument("head_ref", help="The git SHA for the incoming commit")
+    parser.add_argument(
+        "--comment-only",
+        action="store_false",
+        help="Sets git-protect to not exit with an error code",
+    )
+
     args = parser.parse_args()
 
     main(args)
