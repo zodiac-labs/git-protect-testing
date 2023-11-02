@@ -1,3 +1,3 @@
 # git-protect-testing
 
-This file should not be modified.
+This file should not be modified
